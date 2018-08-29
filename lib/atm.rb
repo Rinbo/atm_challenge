@@ -5,8 +5,14 @@ class ATM
         @funds = 1000
     end   
 
-    def withdraw(amount, pin_code, account)
+    def withdraw(amount, pin_code, account, exp_date, account_status)
         case
+        when account_status_active?(account.account_status)
+            return { 
+                status: false, 
+                message: 'account disabled', 
+                date: Date.today
+                }
         when incorrect_pin?(pin_code, account.pin_code)
             return { 
                 status: false, 
@@ -59,5 +65,9 @@ class ATM
     
     def card_expired?(exp_date)
         Date.strptime(exp_date, '%m/%y') < Date.today
+    end
+
+    def account_status_active?(account_status)
+        account_status = :active
     end
 end
