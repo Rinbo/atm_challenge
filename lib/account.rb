@@ -12,6 +12,10 @@ class Account
         @exp_date = Date.today.next_year(Account::STANDARD_VALIDITY_YRS).strftime('%m/%y')
     end
 
+    def deactivates
+        @account_status = :deactivated
+    end
+
     private
 
     def generate_pin
