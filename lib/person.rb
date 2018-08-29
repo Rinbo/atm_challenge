@@ -20,5 +20,8 @@ class Person
         raise ArgumentError, "A name is missing"
     end
 
+    def deposit(amount)
+        @account.balance += amount 
+    end
 
 end
