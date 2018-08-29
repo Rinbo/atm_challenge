@@ -21,6 +21,10 @@ describe Account do
         expect(subject.account_status).to eq :active
     end
 
+    it 'is expected to have a balance' do
+        expect(subject.balance).to be_truthy
+    end
+
     it 'deactivates account using Instance method' do
         subject.deactivates
         expect(subject.account_status).to eq :deactivated
