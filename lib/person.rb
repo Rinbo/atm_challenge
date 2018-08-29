@@ -20,8 +20,12 @@ class Person
         raise ArgumentError, "A name is missing"
     end
 
+    def missing_account
+        raise RuntimeError, 'No account present'
+    end
+
     def deposit(amount)
-        @account.balance += amount 
+        @account.nil? ? missing_account : @account.balance += amount
     end
 
 end
