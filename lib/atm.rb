@@ -5,9 +5,9 @@ class ATM
         @funds = 1000
     end   
 
-    def withdraw(amount, pin_code, account, exp_date, account_status)
+    def withdraw(amount, pin_code, account)
         case
-        when account_status_active?(account.account_status)
+        when account_status_disabled?(account.account_status)
             return { 
                 status: false, 
                 message: 'account disabled', 
@@ -67,7 +67,7 @@ class ATM
         Date.strptime(exp_date, '%m/%y') < Date.today
     end
 
-    def account_status_active?(account_status)
-        account_status = :active
+    def account_status_disabled?(account_status)
+        account_status == :disabled
     end
 end

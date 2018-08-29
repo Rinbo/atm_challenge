@@ -15,7 +15,7 @@ describe ATM do
     end
 
     it 'funds are reduced at withdraw' do
-        subject.withdraw(50, '1234', account) #should this then change to (50, '1234', '04/20', :active)?
+        subject.withdraw(50, '1234', account)
         expect(subject.funds).to eq 950
     end
 
@@ -67,7 +67,8 @@ describe ATM do
         allow(account).to receive(:account_status).and_return(:disabled)
         expected_output = {
             status: false,
-            message: 'account inactive',
+            message: 'account disabled',
             date: Date.today  }
         expect(subject.withdraw(5, '1234', account)).to eq expected_output
+    end
 end
