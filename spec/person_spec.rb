@@ -1,5 +1,7 @@
 require './lib/person'
 require './lib/atm'
+require './lib/account'
+require 'date'
 
 describe Person do
 
@@ -15,6 +17,17 @@ describe Person do
 
     it 'is expected to have a :cash attribute with value of 0 on initialize' do
         expect(subject.cash).to eq 0
+    end
+
+    it 'is expected to have a :account attribute' do
+      expect(subject.account).to be nil
+    end
+
+    describe 'can create an account' do
+      before { subject.create_account }
+      it 'of Account class' do
+        expect(subject.account).to be_an_instance_of Account
+      end
     end
 
 end

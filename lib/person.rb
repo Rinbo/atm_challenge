@@ -1,10 +1,15 @@
 class Person
 
-    attr_accessor :name, :cash
+    attr_accessor :name, :cash, :account
 
     def initialize(name = {})
         set_name(name[:name])
         @cash = 0
+        @account = nil
+    end
+
+    def create_account
+        @account = Account.new({owner: self})
     end
 
     def set_name(name)
