@@ -26,6 +26,7 @@ class Person
 
     def deposit(amount)
         @account.nil? ? missing_account : @account.balance += amount
+        @cash -= amount
     end
 
 end
