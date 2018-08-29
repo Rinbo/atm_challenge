@@ -3,15 +3,19 @@ require './lib/atm'
 
 describe Person do
 
-  subject { described_class.new(name: 'Hanna') }
+    subject { described_class.new(name: 'Hanna') }
 
-  it 'is expected to have a :name on initialize' do
+    it 'is expected to have a :name on initialize' do
     expect(subject.name).not_to be nil
-  end
+    end
 
-  it 'is expected to raise error if no name is set' do
+    it 'is expected to raise error if no name is set' do
     expect { described_class.new }.to raise_error 'A name is missing'
-  end
+    end
+
+    it 'is expected to have a :cash attribute with value of 0 on initialize' do
+        expect(subject.cash).to eq 0
+    end
 
 end
 
