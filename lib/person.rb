@@ -16,6 +16,14 @@ class Person
         name.nil? ? missing_name : @name = name
     end
 
+    def withdraw(info = {})
+        atm = info[:atm]
+        account = info[:account]
+        pin_code = info[:pin]
+        amount = info[:amount]
+        atm.withdraw(amount, pin_code, account)      
+    end
+
     def missing_name
         raise ArgumentError, "A name is missing"
     end
