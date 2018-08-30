@@ -17,7 +17,7 @@ someone.create_account
 ~~~
 Deposit some money from someone's pocket into the account:
 ~~~
-robin.deposit(100)
+someone.deposit(100)
 ~~~
 Create an atm:
 ~~~
