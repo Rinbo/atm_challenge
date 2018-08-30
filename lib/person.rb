@@ -25,8 +25,13 @@ class Person
             account = info[:account]
             pin_code = info[:pin]
             amount = info[:amount]
-            atm.withdraw(amount, pin_code, account)
-        end      
+            response = atm.withdraw(amount, pin_code, account)
+            if response[:status] == true 
+                @cash += amount
+            else
+                response[:message]
+            end
+        end
     end
 
     def missing_name
