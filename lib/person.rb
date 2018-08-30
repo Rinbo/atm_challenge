@@ -17,15 +17,24 @@ class Person
     end
 
     def withdraw(info = {})
-        atm = info[:atm]
-        account = info[:account]
-        pin_code = info[:pin]
-        amount = info[:amount]
-        atm.withdraw(amount, pin_code, account)      
+        
+        if info[:atm] == nil
+            missing_atm
+        else 
+            atm = info[:atm]
+            account = info[:account]
+            pin_code = info[:pin]
+            amount = info[:amount]
+            atm.withdraw(amount, pin_code, account)
+        end      
     end
 
     def missing_name
         raise ArgumentError, "A name is missing"
+    end
+
+    def missing_atm
+        raise ArgumentError, 'An ATM is required'
     end
 
     def missing_account
