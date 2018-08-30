@@ -16,22 +16,24 @@ class Person
         name.nil? ? missing_name : @name = name
     end
 
-    def withdraw(info = {})
-        
-        if info[:atm] == nil
-            missing_atm
-        else 
-            atm = info[:atm]
-            account = info[:account]
-            pin_code = info[:pin]
-            amount = info[:amount]
-            response = atm.withdraw(amount, pin_code, account)
-            if response[:status] == true 
-                @cash += amount
-            else
-                response[:message]
-            end
-        end
+    def withdraw(info = {})        
+        info[:atm] == nil ? missing_atm : handle_transaction(info)
+    end   
+
+    def handle_transaction(info)
+        atm = info[:atm]
+        account = info[:account]
+        pin_code = info[:pin]
+        amount = info[:amount]
+        response = atm.withdraw(amount, pin_code, account)
+        response[:status] == true ? put_money_in_pocket(response) : response[:message]        
+    end
+
+    def put_money_in_pocket(response)
+        @cash += response[:amount]
+        message = response[:message]
+        amount = response[:amount]
+        puts "#{message}! Here is your money: $#{amount}"
     end
 
     def missing_name
